@@ -70,7 +70,27 @@ apt-get install -yqq docker.io chromium-browser
   ````
   8.3. [Official Docker MagicMirror Repo](https://github.com/bastilimbach/docker-MagicMirror)<br>
   8.4. The server config file (an example under config folder)
+  ````
+  sudo mkdir -p /opt/magic_mirror/config
+  sudo touch /opt/magic_mirror/configconfig.js
+  ````
+  8.5. Run the container
+  ````
+  docker run  -d \
+    --publish 80:8080 \
+    --restart always \
+    -e TZ="Europe/Madrid" \
+    --volume ~/magic_mirror/config:/opt/magic_mirror/config \
+    --volume ~/magic_mirror/modules:/opt/magic_mirror/modules \
+    --volume /etc/localtime:/etc/localtime:ro \
+    --name magic_mirror \
+    bastilimbach/docker-magicmirror:v2.11.0
+  ````
 
+## Chromium as Kiosk mode and autorun
+mkdir -p /etc/xdg/lxsession/LXDE-pi/
+nano /etc/xdg/lxsession/LXDE-pi/autostart
+echo "chromium-browser --kiosk http://127.0.0.1" >> /etc/xdg/lxsession/LXDE-pi/autostart
 
 ## License
 
