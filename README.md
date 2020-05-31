@@ -11,15 +11,15 @@
 
 ## Steps
 1. Operating System to the SD Card<br>
-  1.1. ````bash
+  1.1. ````
   dd bs=4M if=2020-02-13-raspios-buster.img of=/dev/sdX conv=fsync
   ````
 2. Disabling the Bluetooth<br>
-  2.1. File: ````bash/boot/config.txt````<br>
-  2.2. Add: ````bashdtoverlay=pi3-disable-bt````
-3. Create file: ````bash/boot/ssh```` To enable the SSH
+  2.1. File: ````/boot/config.txt````<br>
+  2.2. Add: ````dtoverlay=pi3-disable-bt````
+3. Create file: ````/boot/ssh```` To enable the SSH
 4. Configuring WiFi<br>
-  4.1. Create File: ````bashwpa_supplicant.conf````<br>
+  4.1. Create File: ````wpa_supplicant.conf````<br>
   4.2. Content example: <br>
   ````bash
       country=ES
