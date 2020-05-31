@@ -8,6 +8,9 @@
 ## Software
 - Operating System: Raspberry Pi OS (32-bit) with desktop (Version May 2020 - Revision 2020-05-27)
   - [Official Link](https://www.raspberrypi.org/downloads/raspbian/)
+- LCD show drivers and screen calibrations
+  - [Official Repo](https://github.com/goodtft/LCD-show.git)
+- MagicMirror server, as docker container
 
 ## Steps
 1. Operating System to the SD Card<br>
@@ -31,6 +34,42 @@
           psk="NETWORK-PASSWORD"
           }
   ````
+5. raspi-config adaptations (Beware, you need the hostname as raspberrypi)
+6. Install screen drivers<br>
+  6.1.
+````
+sudo rm -rf LCD-show
+git clone https://github.com/goodtft/LCD-show.git
+chmod -R 755 LCD-show
+cd LCD-show/
+````
+  6.2.  
+````
+sudo ./LCD35-show
+````
+  6.3. [Reference](https://github.com/goodtft/LCD-show)<br>
+  6.4. A copy of the original repo are under the LCD-show folder
+7. Intall docker and Chromium Browser
+````
+apt-get update
+apt-get install -yqq docker.io chromium-browser
+````
+
+8. Starting server from Docker<br>
+  8.1. Modules folder
+  ````
+  sudo mkdir -p /opt/magic_mirror/modules
+  ````
+  8.2. Desired modules
+  ````
+  cd /opt/magic_mirror/modules
+  sudo git clone https://github.com/AlexDespain01/mm-hide-all.git
+  sudo git clone https://github.com/edward-shen/MMM-page-indicator.git
+  sudo git clone https://github.com/edward-shen/MMM-pages.git
+  sudo git clone https://github.com/Veldrovive/MMM-Page-Selector.git
+  ````
+  8.3. [Official Docker MagicMirror Repo](https://github.com/bastilimbach/docker-MagicMirror)<br>
+  8.4. The server config file (an example under config folder)
 
 
 ## License
