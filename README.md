@@ -1,9 +1,24 @@
-# Magic Mirror2 on Raspberry Pi OS using Docker server
+# Magic Mirror<sup>2</sup> on Raspberry Pi OS using Docker server
 
 ## Materials
-- 1x Raspberry Pi 3 Model B (Revision Code: a02082)
-- 1x 3.5 inch Touch Screen (Kuman model)
-- 1x 16Gb SD Card
+- 1x  Raspberry Pi 3 Model B (Revision Code: a02082)
+- 1x  3.5 inch Touch Screen (Kuman model)
+- 1x  16Gb SD Card
+
+## How to check the Raspberry Model
+
+Check the **cpuinfo**
+````bash
+cap /proc/cpuinfo
+````
+
+As example:
+````bash
+Hardware    : BCM2835
+Revision    : a02082
+Serial      : 0000..........25
+Model       : Raspberry Pi 3 Model B Rev 1.2
+````
 
 ## Software
 - Operating System: Raspberry Pi OS (32-bit) with desktop (Version May 2020 - Revision 2020-05-27)
@@ -13,17 +28,22 @@
 - MagicMirror server, as docker container
 
 ## Steps
-1. Operating System to the SD Card<br>
-  1.1. ````
+1. Operating System to the SD Card
+  ````bash
   dd bs=4M if=2020-02-13-raspios-buster.img of=/dev/sdX conv=fsync
   ````
 2. Disabling the Bluetooth<br>
-  2.1. File: ````/boot/config.txt````<br>
-  2.2. Add: ````dtoverlay=pi3-disable-bt````
-3. Create file: ````/boot/ssh```` To enable the SSH
+  2.1. _File:_ /boot/config.txt
+  ````bash
+  dtoverlay=pi3-disable-bt
+  ````
+3. Create empty file to enable the SSH
+````bash
+touch /boot/ssh
+````
 4. Configuring WiFi<br>
-  4.1. Create File: ````wpa_supplicant.conf````<br>
-  4.2. Content example: <br>
+  4.1. _File:_ /boot/wpa_supplicant.conf<br>
+_Example Content_
   ````bash
       country=ES
       ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -34,21 +54,18 @@
           psk="NETWORK-PASSWORD"
           }
   ````
-5. raspi-config adaptations (Beware, you need the hostname as raspberrypi)
+5. raspi-config adaptations <br>(Beware, you need the hostname as raspberrypi)
 6. Install screen drivers<br>
+[Reference](https://github.com/goodtft/LCD-show)<br>
+A copy of the original repo are under the LCD-show folder<br>
   6.1.
-````
+````bash
 sudo rm -rf LCD-show
 git clone https://github.com/goodtft/LCD-show.git
 chmod -R 755 LCD-show
 cd LCD-show/
-````
-  6.2.  
-````
 sudo ./LCD35-show
 ````
-  6.3. [Reference](https://github.com/goodtft/LCD-show)<br>
-  6.4. A copy of the original repo are under the LCD-show folder
 7. Intall docker and Chromium Browser
 ````
 apt-get update
