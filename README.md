@@ -54,11 +54,18 @@ _Example Content_
           psk="NETWORK-PASSWORD"
           }
   ````
-5. raspi-config adaptations <br>(Beware, you need the hostname as raspberrypi)
-6. Install screen drivers<br>
+5. **raspi-config** adaptations <br>(Beware, you need the hostname as raspberrypi)
+
+6. Install docker and Chromium Browser
+````
+apt-get update
+apt-get install -yqq docker.io chromium-browser
+````
+
+7. Install screen drivers<br>
 [Reference](https://github.com/goodtft/LCD-show)<br>
 A copy of the original repo are under the LCD-show folder<br>
-  6.1.
+  7.1.
 ````bash
 sudo rm -rf LCD-show
 git clone https://github.com/goodtft/LCD-show.git
@@ -66,11 +73,13 @@ chmod -R 755 LCD-show
 cd LCD-show/
 sudo ./LCD35-show
 ````
-7. Intall docker and Chromium Browser
-````
-apt-get update
-apt-get install -yqq docker.io chromium-browser
-````
+
+
+
+docker pull bastilimbach/docker-magicmirror:v2.11.0
+
+
+
 
 8. Starting server from Docker<br>
   8.1. Modules folder
