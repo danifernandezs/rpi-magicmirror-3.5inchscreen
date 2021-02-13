@@ -29,13 +29,15 @@ Model       : Raspberry Pi 3 Model B Rev 1.2
 
 ## Steps
 1. Operating System to the SD Card
+<br>Pay attention to adjust the sdX, the X it's your device
   ````bash
-  dd bs=4M if=2020-02-13-raspios-buster.img of=/dev/sdX conv=fsync
+  dd bs=4M if=2021-01-11-raspios-buster-armhf.zip of=/dev/sdX conv=fsync
   ````
 2. Disabling the Bluetooth<br>
   2.1. _File:_ /boot/config.txt
+<br>Adding to the end of file
   ````bash
-  dtoverlay=pi3-disable-bt
+  dtoverlay=disable-bt
   ````
 3. Create empty file to enable the SSH
 ````bash
@@ -54,7 +56,10 @@ _Example Content_
           psk="NETWORK-PASSWORD"
           }
   ````
-5. **raspi-config** adaptations <br>(Beware, you need the hostname as raspberrypi)
+
+5. Connect to the Raspberry Pi via ssh
+
+6. **raspi-config** adaptations <br>(Beware, you need the hostname as raspberrypi)
 
 6. Install docker and Chromium Browser
 ````
