@@ -21,8 +21,8 @@ Model       : Raspberry Pi 3 Model B Rev 1.2
 ````
 
 ## Software
-- Operating System: Raspberry Pi OS (32-bit) with desktop (Version May 2020 - Revision 2020-05-27)
-  - [Official Link](https://www.raspberrypi.org/downloads/raspbian/)
+- Operating System: Raspberry Pi OS (32-bit) with desktop (Version Jan 2021 - Revision 2021-01-11)
+  - [Official Link](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit)
 - LCD show drivers and screen calibrations
   - [Official Repo](https://github.com/goodtft/LCD-show.git)
 - MagicMirror server, as docker container
